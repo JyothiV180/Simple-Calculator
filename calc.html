@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Simple Calculator using HTML, CSS and JavaScript</title>
+<body>
+  <h1>Simple Calculator</h1>
+</body>
+  <style>
+    h1{
+       text-align: center;
+    }
+    /* CSS code for styling the calculator */
+    .calculator {
+      width: 300px;
+      height: 400px;
+      margin: 50px auto;
+      border: 2px solid black;
+      border-radius: 10px;
+      background-color: lightgray;
+    }
+
+    .display-box {
+      width: 280px;
+      height: 50px;
+      margin: 10px;
+      font-size: 25px;
+      text-align: right;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+
+    .button {
+      width: 70px;
+      height: 60px;
+      margin: 5px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .operator {
+      background-color:orangered;
+      color: white;
+    }
+
+    .equal {
+      background-color:maroon;
+      color: white;
+    }
+
+    .clear {
+      background-color:darkblue;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <table class="calculator">
+    <tr>
+      <td colspan="4">
+        <input class="display-box" type="text" id="result" disabled />
+      </td>
+    </tr>
+    <tr>
+      <!-- clearScreen () function clears all the values -->
+      <td>
+        <input type="button" value="C" onclick="clearScreen ()" class="button clear" />
+      </td>
+      <!-- backspace () function removes the last character from the display screen -->
+      <td>
+        <input type="button" value="<" onclick="backspace ()" class="button operator" />
+      </td>
+      <!-- display (value) function displays the value on the screen -->
+      <td>
+        <input type="button" value="/" onclick="display ('/')" class="button operator" />
+      </td>
+      <td>
+        <input type="button" value="*" onclick="display ('*')" class="button operator" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="7" onclick="display ('7')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="8" onclick="display ('8')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="9" onclick="display ('9')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="-" onclick="display ('-')" class="button operator" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="4" onclick="display ('4')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="5" onclick="display ('5')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="6" onclick="display ('6')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="+" onclick="display ('+')" class="button operator" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="1" onclick="display ('1')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="2" onclick="display ('2')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="3" onclick="display ('3')" class="button" />
+      </td>
+      <td rowspan="2">
+        <!-- solve () function evaluates the expression and returns the result -->
+        <input type="button" value="=" onclick="solve ()" class="button equal" />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="button" value="0" onclick="display ('0')" class="button" />
+      </td>
+      <td>
+        <input type="button" value="." onclick="display ('.')" class="button" />
+      </td>
+    </tr>
+  </table>
+  <script>
+    // JavaScript code for the calculator logic
+    // Get the display screen element
+    let screen = document.getElementById("result");
+
+    // Function to display values on the screen
+    function display(value) {
+      // Append the value to the screen
+      screen.value += value;
+    }
+
+    // Function to evaluate the expression and return result
+    function solve() {
+      try {
+        // Evaluate the expression using eval() function
+        let result = eval(screen.value);
+        // Display the result on the screen
+        screen.value = result;
+      } catch (err) {
+        // Display error message if the expression is invalid
+        screen.value = "Error";
+      }
+    }
+
+    // Function to clear the screen
+    function clearScreen() {
+      // Set the screen value to empty
+      screen.value = "";
+    }
+
+    // Function to remove the last character from the screen
+    function backspace() {
+      // Get the current screen value
+      let value = screen.value;
+      // Remove the last character from the value
+      value = value.substr(0, value.length - 1);
+      // Display the new value on the screen
+      screen.value = value;
+    }
+  </script>
+</body>
+</html>
